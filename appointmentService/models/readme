@@ -1,0 +1,57 @@
+File Purpose: Defines the MongoDB schema and model for appointments using Mongoose.
+
+Schema Structure:
+
+Required Fields:
+
+name (String)
+
+phoneNumber (String)
+
+date (Date)
+
+timeSlot (String)
+
+Automatic Field:
+
+createdAt (Date) - automatically set to current time on creation
+
+Special Features:
+
+Compound Index:
+
+Combines date and timeSlot
+
+Set as unique to prevent double bookings
+
+Index direction is ascending (1)
+
+Data Validation:
+
+All fields except createdAt are required
+
+Automatic type checking:
+
+Strings for name and phoneNumber
+
+Date objects for date field
+
+String for timeSlot
+
+Model Export:
+
+Exports as 'Appointment' model
+
+Ready for use in other parts of application
+
+Usage Context:
+
+Used for creating new appointments
+
+Querying available slots
+
+Preventing duplicate bookings
+
+Tracking appointment creation time
+
+This model provides the foundation for the appointment booking system with built-in validation and duplicate prevention mechanisms.

@@ -1,0 +1,29 @@
+{
+  "name": "apiservice2",
+  "version": "1.0.0",
+  "description": "sample api service for docker swarm",
+  "main": "App.js",
+  "scripts": {
+    "test": "mocha 'test/**/*.js' --timeout 60000 --exit",
+    "dev": "nodemon App.js",
+    "start": "node App.js"
+  },
+  "author": "nelsonct7",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.7",
+    "chai": "^4.5.0",
+		"chai-http": "^4.3.0",
+    "mocha": "^10.8.2"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "mongoose": "^8.8.2",
+    "morgan": "^1.10.0"
+  },
+   "type": "commonjs"
+}

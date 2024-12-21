@@ -1,0 +1,83 @@
+File Purpose: Handles appointment-related HTTP endpoints for slot checking and booking appointments.
+
+Key Components:
+
+Route Handlers:
+
+GET /slots/:date: Retrieves available time slots for a specific date
+
+POST /book: Creates new appointment bookings
+
+Endpoints Details:
+
+GET /slots/:date:
+
+Accepts a date parameter
+
+Uses slotService to check available slots
+
+Returns JSON with available slots array
+
+Includes error handling for server errors
+
+POST /book:
+
+Accepts request body with:
+
+name
+
+phoneNumber
+
+date
+
+timeSlot
+
+Performs validation:
+
+Checks for required fields
+
+Verifies slot availability
+
+Creates and saves new appointment
+
+Error handling for:
+
+Missing fields (400)
+
+Unavailable slots (400)
+
+Duplicate bookings (400)
+
+Server errors (500)
+
+Dependencies:
+
+express: Web framework
+
+Appointment: MongoDB model for appointments
+
+slotService: Custom service for slot management
+
+Data Flow:
+
+Request comes in
+
+Validates input data
+
+Checks slot availability
+
+Creates/retrieves appointments
+
+Returns appropriate response
+
+Error Handling:
+
+Input validation
+
+Duplicate booking detection
+
+Generic error catching
+
+Appropriate status codes and error messages
+
+This router implements a basic but robust appointment booking system with proper validation and error handling.

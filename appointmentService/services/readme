@@ -1,0 +1,63 @@
+Here's an overview of the SlotService class:
+
+File Purpose: Manages time slot generation and availability checking for appointments.
+
+Key Components:
+
+generateTimeSlots():
+
+Creates array of available time slots [1]
+
+Business hours: 10 AM to 5 PM [2]
+
+Generates 30-minute intervals
+
+Excludes lunch hour (1 PM - 2 PM)
+
+Returns slots in "HH:MM" format
+
+Time slots are padded with leading zeros
+
+getAvailableSlots(date, Appointment):
+
+Async method to find available slots for specific date
+
+Parameters:
+
+date: target date
+
+Appointment: MongoDB model reference
+
+Process:
+
+Generates all possible time slots
+
+Queries database for booked appointments
+
+Filters out already booked slots
+
+Uses date range query (entire day)
+
+Time Slot Features:
+
+30-minute intervals
+
+Business hours: 10:00 - 17:00
+
+Lunch break: 13:00 - 14:00
+
+Format: "HH:MM" (24-hour format)
+
+Database Interaction:
+
+Queries appointments for specific date
+
+Uses MongoDB date range operators ($gte, $lt)
+
+Selects only timeSlot field (-_id excluded)
+
+Export:
+
+Exports singleton instance of SlotService
+
+This service handles all time slot related logic, providing clean separation of concerns from the route handlers.

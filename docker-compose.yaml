@@ -1,0 +1,68 @@
+version: '3.7'
+
+services:
+  client-react-vite:
+    build:
+      context: ./frontEnd/
+      dockerfile: Dockerfile.1
+    init: true
+    volumes:
+      - type: bind
+        source: ./frontEnd/
+        target: /usr/src/app/
+      - type: volume
+        target: /usr/src/app/node_modules 
+      - type: bind
+        source: ./frontEnd/vite.config.ts
+        target: /usr/src/app/vite.config.ts
+    networks:
+      - frontend
+    ports:
+      - 5173:5173
+  client-react-nginx:
+    build:
+      context: ./frontEnd/
+      dockerfile: Dockerfile
+    init: true
+    networks:
+      - frontend
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+  api-appointment:
+    build:
+      context: ./appointmentService/
+      dockerfile: Dockerfile
+    init: true
+    depends_on:
+      - db
+    environment:
+      - DB_URL=mongodb://root:password@db:27017/
+    networks:
+      - frontend
+      - backend
+    ports:
+      - 3002:3002
+    restart: unless-stopped
+
+  db:
+    image: mongo
+    networks:
+      - backend
+    volumes:
+      - dbdata:/data/db
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+  
+    
+volumes:
+  dbdata:
+    driver: local
+
+networks:
+  frontend:
+  backend:
